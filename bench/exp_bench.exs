@@ -1,6 +1,6 @@
 defmodule RandSet do
   def rand_set(size) do
-    for(_ <- 1..size, do: :rand.uniform())
+    for(_ <- 1..size, do: :rand.uniform() * 200 - 100)
   end
 
   def make_input(size) do
