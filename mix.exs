@@ -26,7 +26,9 @@ defmodule NxMath.MixProject do
       {:ex_doc, "~> 0.26", only: :dev, runtime: false},
       {:dialyxir, "~> 1.1", only: :dev, runtime: false},
       {:git_hooks, "~> 0.6.4", only: :dev, runtime: false},
-      {:benchee, "~> 1.0", only: :dev}
+      {:benchee, "~> 1.0", only: :dev},
+      {:exla, "~> 0.1.0-dev", github: "elixir-nx/nx", sparse: "exla"},
+      {:nx, "~> 0.1.0-dev", github: "elixir-nx/nx", sparse: "nx", override: true}
     ]
   end
 end
