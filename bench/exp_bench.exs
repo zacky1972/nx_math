@@ -20,17 +20,18 @@ end
 inputs = %{
   "Small" => RandSet.make_input(1_000),
   "Medium" => RandSet.make_input(10_000),
-  "Large" => RandSet.make_input(100_000)
+  "Large" => RandSet.make_input(100_000),
+  "Huge" => RandSet.make_input(1_000_000)
 }
 
 benches = %{
-  "Nx Nx.exp f16" => fn %{input16: input} -> Nx.exp(input) end,
+  # "Nx Nx.exp f16" => fn %{input16: input} -> Nx.exp(input) end,
   # "Nx Nx.exp f32" => fn %{input32: input} -> Nx.exp(input) end,
   # "Nx Nx.exp f64" => fn %{input64: input} -> Nx.exp(input) end,
   "EXLA Nx.exp f16" => fn %{input16: input} -> EXLA.jit(&Nx.exp/1, [input]) end,
   # "EXLA Nx.exp f32" => fn %{input32: input} -> EXLA.jit(&Nx.exp/1, [input]) end,
   # "EXLA Nx.exp f64" => fn %{input64: input} -> EXLA.jit(&Nx.exp/1, [input]) end,
-  "Nx NxMath.exp16 f16" => fn %{input16: input} -> NxMath.exp16(input) end,
+  # "Nx NxMath.exp16 f16" => fn %{input16: input} -> NxMath.exp16(input) end,
   "EXLA NxMath.exp16 f16" => fn %{input16: input} -> EXLA.jit(&NxMath.exp16/1, [input]) end
 }
 
