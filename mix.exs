@@ -1,13 +1,17 @@
 defmodule NxMath.MixProject do
   use Mix.Project
 
+  @source_url "https://github.com/zacky1972/nx_math"
+  @version "0.1.0-dev"
+
   def project do
     [
       app: :nx_math,
-      version: "0.1.0-dev",
+      version: @version,
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      docs: docs()
     ]
   end
 
@@ -29,6 +33,14 @@ defmodule NxMath.MixProject do
       {:benchee, "~> 1.0", only: :dev},
       {:exla, "~> 0.1.0-dev", github: "elixir-nx/nx", sparse: "exla"},
       {:nx, "~> 0.1.0-dev", github: "elixir-nx/nx", sparse: "nx", override: true}
+    ]
+  end
+
+  defp docs do
+    [
+      main: "NxMath",
+      source_ref: "v#{@version}",
+      source_url: @source_url
     ]
   end
 end
