@@ -47,15 +47,19 @@ defmodule NxMath do
         1.0
       >
   """
-  defn exp16(t) do
-    greater_equal_12 = Nx.greater_equal(t, 12)
-    less_12 = Nx.less(t, 12)
-
-    t =
+  defn exp16(t0) do
+    t0 =
       rewrite_types(
-        t / @log2,
-        max_float_type: {:f, 16}
+        t0,
+        max_float_type: {:f, 16},
+        max_signed_type: {:f, 16},
+        max_unsigned_type: {:f, 16}
       )
+
+    greater_equal_12 = Nx.greater_equal(t0, 12)
+    less_12 = Nx.less(t0, 12)
+
+    t = (t0 / @log2) |> Nx.as_type({:f, 16})
 
     xf =
       (t - Nx.floor(t))
