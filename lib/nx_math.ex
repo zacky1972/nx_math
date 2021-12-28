@@ -33,6 +33,12 @@ defmodule NxMath do
   @doc """
   Calculates the exponential of each element in the tensor.
 
+  This argorithm is based on
+  ["Fast Exponential Computation on SIMD Architecture" by A. Cristiano et al.,
+  in the proceedings *HiPEAC 2015: 1st Workshop On Approximate Computing (WAPCO),*
+  Amsterdam, NL, Jan, 2015,
+  DOI:10.13140/2.1.4362.3207.](https://www.researchgate.net/publication/272178514_Fast_Exponential_Computation_on_SIMD_Architectures)
+
   ## Examples
 
       iex> NxMath.exp16(0)
