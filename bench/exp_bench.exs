@@ -1,6 +1,6 @@
 defmodule RandSet do
   def rand_set(size) do
-    for(_ <- 1..size, do: :rand.uniform() * 200 - 100)
+    for(_ <- 1..size, do: :rand.uniform() * 20 - 10)
   end
 
   def make_input(size) do
@@ -24,12 +24,14 @@ inputs = %{
 }
 
 benches = %{
-  "Nx exp f16" => fn %{input16: input} -> Nx.exp(input) end,
-  "Nx exp f32" => fn %{input32: input} -> Nx.exp(input) end,
-  "Nx exp f64" => fn %{input64: input} -> Nx.exp(input) end,
-  "EXLA exp f16" => fn %{input16: input} -> EXLA.jit(&Nx.exp/1, [input]) end,
-  "EXLA exp f32" => fn %{input32: input} -> EXLA.jit(&Nx.exp/1, [input]) end,
-  "EXLA exp f64" => fn %{input64: input} -> EXLA.jit(&Nx.exp/1, [input]) end
+  "Nx Nx.exp f16" => fn %{input16: input} -> Nx.exp(input) end,
+  # "Nx Nx.exp f32" => fn %{input32: input} -> Nx.exp(input) end,
+  # "Nx Nx.exp f64" => fn %{input64: input} -> Nx.exp(input) end,
+  "EXLA Nx.exp f16" => fn %{input16: input} -> EXLA.jit(&Nx.exp/1, [input]) end,
+  # "EXLA Nx.exp f32" => fn %{input32: input} -> EXLA.jit(&Nx.exp/1, [input]) end,
+  # "EXLA Nx.exp f64" => fn %{input64: input} -> EXLA.jit(&Nx.exp/1, [input]) end,
+  "Nx NxMath.exp16 f16" => fn %{input16: input} -> NxMath.exp16(input) end,
+  "EXLA NxMath.exp16 f16" => fn %{input16: input} -> EXLA.jit(&NxMath.exp16/1, [input]) end
 }
 
 Benchee.run(
